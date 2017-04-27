@@ -33,6 +33,15 @@ function serveFile(file, type, req, res) {
   });
 }
 
+
+function addLocation(req, res) {
+  var url = require('url').parse(req.url);
+  var qs = require('qs').parse(url.query);
+  var address = qs.address;
+  // Perform Geolocation with address
+  
+}
+
 /** @function handleRequest
  * Handles incoming http requests
  * @param {http.incomingRequest} req - the request object
@@ -61,6 +70,10 @@ function handleRequest(req, res) {
       break;
     case '/united-states.json':
       serveFile('data/united-states.json', 'application/json', req, res);
+      break;
+
+    case 'add/location':
+      addLocation();
       break;
 
     // Serve error code
